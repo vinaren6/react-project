@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import Skapa from './Components/Main/Skapa'
+import { Nav } from './Components/Header/Nav'
+import {Home} from './Components/Main/Home'
+import {Redigera} from './Components/Main/Redigera'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    state = {
+        categorySelected : 0,
+        selectedBeerName : '',
+        searchTerm: ''
+    }
+    
+    onCategoryChange = selectedCat => {
+        console.log("selected category: " + selectedCat)
+        this.setState({
+            categorySelected : selectedCat
+        })
+    }
+
+    updateSearchTerm = queryString => {
+        this.setState({searchTerm: queryString})
+    }
+
+    render() {
+        return (
+            <div>
+                <Router>
+                    <div>
+                        <Nav selectedCat={this.state.categorySelected} onSelect={this.onCategoryChange}/>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/Redigera" component={Redigera} />
+                        <Route path="/Skapa" component={Skapa}/>
+                    </div>
+                </Router>
+            </div>
+        );
+    }
 }
+
+
 
 export default App;
