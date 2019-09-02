@@ -1,3 +1,8 @@
+body{
+  margin: 0px;
+  padding: 0px;
+
+}
 .wrapper {
     height: 100vh;
     width: 100%;
@@ -60,7 +65,7 @@
   .errorMessage {
     color: red;
     font-size: 0.75em;
-    display: relative;
+    /*display: relative; */
   }
   
   .firstName {
