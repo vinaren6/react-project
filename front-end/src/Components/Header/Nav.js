@@ -17,7 +17,7 @@ export const Nav = ({selectedCat, onSelect}) => {
             centered
         >
             <Tab label="Home" component={Link} to="/"/>
-            <Tab label="Skapa" component={Link} to="/Skapa"/>
+            <Tab label="Sign up" component={Link} to="/signup"/>
             <Tab label="Redigera" component={Link} to="/Redigera"/>
         </Tabs>
         </Paper>

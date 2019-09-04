@@ -1,20 +1,22 @@
 import React from 'react'
 import axios from 'axios'
+import {Link} from "react-router-dom";
 
 class Login extends React.Component{
     state = {
-        user: '',
+        email: '',
         pass: ''
     };
+
+
 
     handleFormSubmit(event){
         event.preventDefault()
         axios({
             method: 'post',
-            //url till servern
-            url: '',
+            url: 'http://localhost:3010/login',
             data:{
-                username: this.state.user,
+                email: this.state.email,
                 password: this.state.pass
             }
         }).then((result) => {
@@ -27,15 +29,26 @@ class Login extends React.Component{
     render() {
         return (
             <div>
-                <p>Login</p>
+                <div className="wrapper">
+                    <div className="form-wrapper">
+                        <h1>Login</h1>
+
                 <form onSubmit={event => this.handleFormSubmit(event)}>
-                    <input type="text" value={this.state.user} placeholder="email" onChange={event => this.setState({user: event.target.value})}/>
-                    <br/>
-                    <input type="password" value={this.state.pass} placeholder="password" onChange={event => this.setState({pass: event.target.value})}/>
-                    <br/>
-                    <input type="submit" value="Submit"/>
+
+                    <label htmlFor="email">Email</label>
+                    <input type="email" className="email" value={this.state.email} placeholder="Email" onChange={event => this.setState({email: event.target.value})}/>
+
+                    <label htmlFor="password">Password</label>
+                    <input type="password" className="password" value={this.state.pass} placeholder="Password" onChange={event => this.setState({pass: event.target.value})}/>
+
+                    <div className="createAccount">
+                        <button type="submit"> Login</button>
+                        <Link to="/signup">Don't Have an Account?</Link>
+                    </div>
 
                 </form>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route} from "react-router-dom";
-import Skapa from './Components/Main/Skapa'
+import Signup from './Components/Main/Signup'
 import { Nav } from './Components/Header/Nav'
 import {Home} from './Components/Main/Home'
 import {Redigera} from './Components/Main/Redigera'
@@ -31,8 +31,8 @@ class App extends React.Component {
                     <div>
                         <Nav selectedCat={this.state.categorySelected} onSelect={this.onCategoryChange}/>
                         <Route exact path="/" component={Home} />
-                        <Route path="/Redigera" component={Login} />
-                        <Route path="/Skapa" component={Skapa}/>
+                        <Route path="/Login" component={Login} />
+                        <Route path="/signup" component={Signup}/>
                     </div>
                 </Router>
             </div>
