@@ -1,6 +1,6 @@
 import React from 'react';
-
-import {BrowserRouter, Route} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { link } from 'fs';
 
 
 
@@ -144,8 +144,8 @@ class Skapa extends React.Component {
                             )}
                         </div>
                         <div className="createAccount">
-                            <button type="submit"> Create Account</button>
-                            <small>Already Have an Account?</small>
+                            <button type="submit" onClick={Link} to="/Home"> Create Account</button>
+                            <small component={Link} to="/Home" >Already Have an Account?</small>
                         </div>
                     </form>
                     
