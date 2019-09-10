@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const signup = require('./controllers/auth').signup
 const login = require('./controllers/auth').login
-const isAuthorized = require('./controllers/auth').isAut horized
+const isAuthorized = require('./controllers/auth').isAuthorized
 const envVars = require('dotenv').config()
 const bookRouter = require('./routes/book')
 
