@@ -1,7 +1,14 @@
 import React from 'react';
+
 import { setToken} from "../AuthHelper";
 import {BrowserRouter, Link, Route} from 'react-router-dom'
 import axios from "axios";
+
+import { Link } from 'react-router-dom'
+
+
+import {BrowserRouter, Link, Route} from 'react-router-dom'
+
 
 
 
@@ -167,10 +174,17 @@ class Signup extends React.Component {
                                 <span className="errorMessage">{formErrors.password}</span>
                             )}
                         </div>
+
+                        <div className="createAccount">
+                            <button type="submit" onClick={Link} to="/Home"> Create Account</button>
+                            <small component={Link} to="/Home" >Already Have an Account?</small>
+                        </div>
+
                             <div className="createAccount">
                                 <button type="submit"> Create Account</button>
                                 <Link to="/login">Already Have an Account?</Link>
                             </div>
+
                     </form>
                     
                 </div>
