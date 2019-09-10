@@ -1,6 +1,7 @@
 import React from 'react';
-
+import { setToken} from "../AuthHelper";
 import {BrowserRouter, Link, Route} from 'react-router-dom'
+import axios from "axios";
 
 
 
@@ -38,6 +39,8 @@ class Signup extends React.Component {
         };
     }
 
+
+
     handleChange = e => {
         e.preventDefault();
         const {name, value} = e.target;
@@ -64,8 +67,28 @@ class Signup extends React.Component {
         this.setState({formErrors, [name]: value }, () => console.log(this.state))
     }
 
+
     handleSumbit = e => {
       e.preventDefault();
+        axios({
+            method: 'post',
+            url: 'http://localhost:3010/signup',
+            data:{
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                email: this.state.email,
+                password: this.state.password
+            }
+        }).then((result) => {
+            if (result && result.data && result.data.signedJWT) {
+                setToken(result.data.signedJWT)
+                this.props.history.replace('/');
+            }
+        })
+    };
+
+
+        /*
       
       if(formValid(this.state)) {
           console.log(`
@@ -78,7 +101,8 @@ class Signup extends React.Component {
       } else {
         console.error('FORM INVALID - DISPLAY ERROR MESSAGE');
       }
-    };
+      */
+
 
     render() {
         const { formErrors} = this.state;
