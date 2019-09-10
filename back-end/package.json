@@ -7,9 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-<<<<<<< HEAD
-  "license": "ISC"
-=======
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -19,7 +16,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.12"
+    "mongoose": "^5.6.12",
+    "socket.io": "^2.2.0"
   }
->>>>>>> 69dbffab4333d37318599c24240ae77be3141ed2
 }

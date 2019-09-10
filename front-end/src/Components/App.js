@@ -6,6 +6,7 @@ import { Nav } from './Header/Nav'
 import {Home} from './Main/Home'
 import Login from './Main/Login'
 import { isLoggedIn, getToken } from './AuthHelper';
+import Chat from "./Chat/Chat";
 
 class App extends React.Component {
     state = {
@@ -48,7 +49,9 @@ class App extends React.Component {
                 <Router>
                     <div>
                         <Nav selectedCat={this.state.categorySelected} onSelect={this.onCategoryChange}/>
-                        <p>test</p>
+                        <Route exact path="/" component={Home}/>
+                        <Route exact path="/chat" component={Chat}/>
+
 
 
                     </div>

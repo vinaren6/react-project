@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Link } from "react-router-dom";
+import Chat from '../Chat/Chat'
 
 
 export const Nav = ({selectedCat, onSelect}) => {
