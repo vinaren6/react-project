@@ -1,21 +1,19 @@
 import React from 'react'
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import axios from 'axios';
-import Signup from './Main/Signup'
-import { Nav } from './Header/Nav'
+import  { Nav }  from './Header/Nav'
 import {Home} from './Main/Home'
-import Login from './Main/Login'
-import { isLoggedIn, getToken } from './AuthHelper';
-import Chat from "./Chat/Chat";
+import {isLoggedIn, getToken, logout} from './AuthHelper';
 
 class App extends React.Component {
     state = {
         categorySelected : 0,
-        selectedBeerName : '',
-        searchTerm: ''
+        checkLogout: false
     }
 
     componentDidMount() {
+        const { myKey } = this.props.match.params
+        console.log(myKey)
         if (!isLoggedIn()) {
             this.props.history.replace('/Login')} else {
             axios({
@@ -31,6 +29,7 @@ class App extends React.Component {
         }
     }
 
+
     
     onCategoryChange = selectedCat => {
         console.log("selected category: " + selectedCat)
@@ -39,9 +38,7 @@ class App extends React.Component {
         })
     }
 
-    updateSearchTerm = queryString => {
-        this.setState({searchTerm: queryString})
-    }
+
 
     render() {
         return (
@@ -50,7 +47,10 @@ class App extends React.Component {
                     <div>
                         <Nav selectedCat={this.state.categorySelected} onSelect={this.onCategoryChange}/>
                         <Route exact path="/" component={Home}/>
-                        <Route exact path="/chat" component={Chat}/>
+                        <Router>
+
+                        </Router>
+
 
 
 

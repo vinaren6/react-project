@@ -16,6 +16,6 @@ export const isLoggedIn = () => {
 
 export const logout = () => {
     localStorage.removeItem('sometokenname')
+
 }
 
-//Exercise - Add funtionality to check if token has expired or not
