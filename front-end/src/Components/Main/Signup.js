@@ -1,8 +1,10 @@
 import React from 'react';
 
+
 import { setToken} from "../AuthHelper";
 import {BrowserRouter, Link, Route} from 'react-router-dom'
 import axios from "axios";
+
 
 
 
@@ -158,7 +160,6 @@ class Signup extends React.Component {
                                 <span className="errorMessage">{formErrors.password}</span>
                             )}
                         </div>
-
 
 
                             <div className="createAccount">

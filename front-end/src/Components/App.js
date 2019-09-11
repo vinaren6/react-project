@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import axios from 'axios';
 import  { Nav }  from './Header/Nav'
-import {Home} from './Main/Home'
+import Home from './Main/Home'
 import {isLoggedIn, getToken, logout} from './AuthHelper';
 
 class App extends React.Component {
