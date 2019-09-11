@@ -1,11 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD:src/Components/Main/Skapa.js
 import { Link } from 'react-router-dom'
-import { link } from 'fs';
-=======
 
-import {BrowserRouter, Link, Route} from 'react-router-dom'
->>>>>>> 69dbffab4333d37318599c24240ae77be3141ed2:front-end/src/Components/Main/Signup.js
 
 
 
@@ -148,17 +143,14 @@ class Signup extends React.Component {
                                 <span className="errorMessage">{formErrors.password}</span>
                             )}
                         </div>
-<<<<<<< HEAD:src/Components/Main/Skapa.js
+
                         <div className="createAccount">
                             <button type="submit" onClick={Link} to="/Home"> Create Account</button>
-                            <small component={Link} to="/Home" >Already Have an Account?</small>
+                            <Link  to="/login" >Already Have an Account?</Link>
                         </div>
-=======
-                            <div className="createAccount">
-                                <button type="submit"> Create Account</button>
-                                <Link to="/login">Already Have an Account?</Link>
-                            </div>
->>>>>>> 69dbffab4333d37318599c24240ae77be3141ed2:front-end/src/Components/Main/Signup.js
+
+                           
+
                     </form>
                     
                 </div>
