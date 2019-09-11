@@ -1,6 +1,18 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom'
 
+=======
+
+import { setToken} from "../AuthHelper";
+import {BrowserRouter, Link, Route} from 'react-router-dom'
+import axios from "axios";
+
+
+
+
+
+>>>>>>> d71f9272ffd4aa6aeefe87e0eeeae8365e5d1803
 
 
 
@@ -38,6 +50,8 @@ class Signup extends React.Component {
         };
     }
 
+
+
     handleChange = e => {
         e.preventDefault();
         const {name, value} = e.target;
@@ -64,8 +78,28 @@ class Signup extends React.Component {
         this.setState({formErrors, [name]: value }, () => console.log(this.state))
     }
 
+
     handleSumbit = e => {
       e.preventDefault();
+        axios({
+            method: 'post',
+            url: 'http://localhost:3010/signup',
+            data:{
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                email: this.state.email,
+                password: this.state.password
+            }
+        }).then((result) => {
+            if (result && result.data && result.data.signedJWT) {
+                setToken(result.data.signedJWT)
+                this.props.history.replace('/');
+            }
+        })
+    };
+
+
+        /*
       
       if(formValid(this.state)) {
           console.log(`
@@ -78,7 +112,8 @@ class Signup extends React.Component {
       } else {
         console.error('FORM INVALID - DISPLAY ERROR MESSAGE');
       }
-    };
+      */
+
 
     render() {
         const { formErrors} = this.state;
@@ -149,7 +184,14 @@ class Signup extends React.Component {
                             <Link  to="/login" >Already Have an Account?</Link>
                         </div>
 
+<<<<<<< HEAD
                            
+=======
+                            <div className="createAccount">
+                                <button type="submit"> Create Account</button>
+                                <Link to="/login">Already Have an Account?</Link>
+                            </div>
+>>>>>>> d71f9272ffd4aa6aeefe87e0eeeae8365e5d1803
 
                     </form>
                     

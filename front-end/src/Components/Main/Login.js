@@ -1,12 +1,14 @@
 import React from 'react'
 import axios from 'axios'
+import {getToken, isLoggedIn, setToken} from "../AuthHelper";
 import {Link} from "react-router-dom";
 
 class Login extends React.Component{
     state = {
         email: '',
-        pass: ''
+        password: ''
     };
+
 
 
 
@@ -17,11 +19,13 @@ class Login extends React.Component{
             url: 'http://localhost:3010/login',
             data:{
                 email: this.state.email,
-                password: this.state.pass
+                password: this.state.password
             }
         }).then((result) => {
-            if (result.data) {
-                console.log(result.data)
+            if (result && result.data && result.data.signedJWT) {
+                console.log("inuti then");
+                setToken(result.data.signedJWT)
+                this.props.history.replace('/');
             }
         })
     }
@@ -39,7 +43,7 @@ class Login extends React.Component{
                     <input type="email" className="email" value={this.state.email} placeholder="Email" onChange={event => this.setState({email: event.target.value})}/>
 
                     <label htmlFor="password">Password</label>
-                    <input type="password" className="password" value={this.state.pass} placeholder="Password" onChange={event => this.setState({pass: event.target.value})}/>
+                    <input type="password" className="password" value={this.state.password} placeholder="Password" onChange={event => this.setState({password: event.target.value})}/>
 
                     <div className="createAccount">
                         <button type="submit"> Login</button>

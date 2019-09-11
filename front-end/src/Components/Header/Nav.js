@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Link } from "react-router-dom";
+import Chat from '../Chat/Chat'
 
 
 export const Nav = ({selectedCat, onSelect}) => {
@@ -17,8 +18,8 @@ export const Nav = ({selectedCat, onSelect}) => {
             centered
         >
             <Tab label="Home" component={Link} to="/"/>
-            <Tab label="Sign up" component={Link} to="/signup"/>
-            <Tab label="Redigera" component={Link} to="/Redigera"/>
+            <Tab label="Chat" component={Link} to="/chat"/>
+
         </Tabs>
         </Paper>
     )
