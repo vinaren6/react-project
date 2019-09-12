@@ -1,7 +1,6 @@
 {
   "name": "react-project",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "browser-router": "^0.2.0",
@@ -26,5 +25,6 @@
   "bugs": {
     "url": "https://github.com/vinaren6/react-project/issues"
   },
-  "homepage": "https://github.com/vinaren6/react-project#readme"
+  "homepage": "https://github.com/vinaren6/react-project#readme",
+  "description": ""
 }
