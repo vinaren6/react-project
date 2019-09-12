@@ -1,18 +1,7 @@
 import React from 'react';
-<<<<<<< HEAD
-import { Link } from 'react-router-dom'
-
-=======
-
 import { setToken} from "../AuthHelper";
 import {BrowserRouter, Link, Route} from 'react-router-dom'
 import axios from "axios";
-
-
-
-
-
->>>>>>> d71f9272ffd4aa6aeefe87e0eeeae8365e5d1803
 
 
 
@@ -184,14 +173,12 @@ class Signup extends React.Component {
                             <Link  to="/login" >Already Have an Account?</Link>
                         </div>
 
-<<<<<<< HEAD
-                           
-=======
+
                             <div className="createAccount">
                                 <button type="submit"> Create Account</button>
                                 <Link to="/login">Already Have an Account?</Link>
                             </div>
->>>>>>> d71f9272ffd4aa6aeefe87e0eeeae8365e5d1803
+
 
                     </form>
                     

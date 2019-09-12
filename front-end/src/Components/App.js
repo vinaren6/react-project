@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import axios from 'axios';
 import Signup from './Main/Signup'
 import { Nav } from './Header/Nav'
-import {Home} from './Main/Home'
+import { Home } from './Main/Home'
 import Login from './Main/Login'
 import { isLoggedIn, getToken } from './AuthHelper';
-import Chat from "./Chat/Chat";
+import { Dashboard } from './Main/Dashboard'
+import Store from './Main/Store'
 
 class App extends React.Component {
     state = {
@@ -50,7 +51,6 @@ class App extends React.Component {
                     <div>
                         <Nav selectedCat={this.state.categorySelected} onSelect={this.onCategoryChange}/>
                         <Route exact path="/" component={Home}/>
-                        <Route exact path="/chat" component={Chat}/>
 
 
 
