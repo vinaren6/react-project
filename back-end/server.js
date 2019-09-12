@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const client = require('socket.io').listen(4000).sockets;
+const { check, validationResult } = require('express-validator');
 const signup = require('./controllers/auth').signup
 const login = require('./controllers/auth').login
 const isAuthorized = require('./controllers/auth').isAuthorized
@@ -23,14 +23,23 @@ mongoose.connect('mongodb://localhost/testbase9', {useNewUrlParser: true, useCre
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 
-
-
-app.get('/', function(req, res){
-    res.json({someProperty : "Some value"})
-})
-
-app.post('/signup', signup)
-app.post('/login', login)
+app.post('/signup', [check('firstName').isLength({min:  3}), check('lastName').isLength({min:  3}), check('password').isLength({min:  6}), check('email').isEmail(),],(req, res, next) => {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+        } else {
+            return next()
+        }
+    }
+    , signup)
+app.post('/login', [check('password').isLength({min:  6}), check('email').isEmail(),],(req, res, next) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() })
+    } else {
+        return next()
+    }
+} ,login)
 app.use('/Redigera', isAuthorized)
 app.use('/api/books', bookRouter)
 
