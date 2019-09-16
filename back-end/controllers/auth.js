@@ -1,5 +1,6 @@
 const User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
+const { check, validationResult } = require('express-validator');
 
 function createJWT(user) {
     return jwt.sign({ id: user.id }, process.env.JWT_DEV_ENV_SECRET, {
@@ -16,12 +17,15 @@ const verifyJWT = token =>
 })
 
 const signup = (req, res) => {
-    //TODO Exercise - add input validation and error handling
+
     const user = new User()
+
     user.firstName = req.body.firstName
     user.lastName = req.body.lastName
     user.email = req.body.email
     user.password = req.body.password
+
+
     user.save(function (err, user) {
         if (err) {
             console.log(err)
@@ -34,9 +38,10 @@ const signup = (req, res) => {
 }
 
 const login = async (req, res) => {
-    //TODO Exercise - add input validation and error handling
     console.log(req.body.email);
     console.log(req.body.password)
+
+
     const user = await User.findOne({ email: req.body.email }).exec()
     if (!user) {
         return res.status(400).send({ message: 'invalid combination' })

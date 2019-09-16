@@ -2,13 +2,13 @@ const express = require('express')();
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const io = require('socket.io').listen(4000).sockets;
 const signup = require('./controllers/auth').signup
 const login = require('./controllers/auth').login
 const isAuthorized = require('./controllers/auth').isAuthorized
 const envVars = require('dotenv').config()
 const bookRouter = require('./routes/book')
-var http = require('http').createServer(express),
-var io = require('socket.io')(http);
+
 
 const app = express()
 
@@ -44,9 +44,7 @@ io.on('connection', function(socket){
         io.emit('chat message', msg)
     });
 })
-http.listen(3010,function(){
-    console.log('listening on *:3010');
-});
+
 
 
 app.listen(3010, function(){ console.log('Node server listening on port 3010');});

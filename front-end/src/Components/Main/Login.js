@@ -40,7 +40,7 @@ class Login extends React.Component{
                 <form onSubmit={event => this.handleFormSubmit(event)}>
 
                     <label htmlFor="email">Email</label>
-                    <input type="email" className="email" value={this.state.email} placeholder="Email" onChange={event => this.setState({email: event.target.value})}/>
+                    <input  className="email" value={this.state.email} placeholder="Email" onChange={event => this.setState({email: event.target.value})}/>
 
                     <label htmlFor="password">Password</label>
                     <input type="password" className="password" value={this.state.password} placeholder="Password" onChange={event => this.setState({password: event.target.value})}/>
