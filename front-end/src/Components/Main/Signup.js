@@ -5,6 +5,7 @@ import axios from "axios";
 
 
 
+
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 
 const formValid = ({formErrors, ...rest }) => {
@@ -88,21 +89,6 @@ class Signup extends React.Component {
     };
 
 
-        /*
-      
-      if(formValid(this.state)) {
-          console.log(`
-          --SUBMITTING--
-          First Name: ${this.state.firstName}
-          Last Name: ${this.state.lastName}
-          Email: ${this.state.email}
-          Password: ${this.state.password}
-          `)
-      } else {
-        console.error('FORM INVALID - DISPLAY ERROR MESSAGE');
-      }
-      */
-
 
     render() {
         const { formErrors} = this.state;
@@ -168,16 +154,14 @@ class Signup extends React.Component {
                             )}
                         </div>
 
-                        <div className="createAccount">
-                            <button type="submit" onClick={Link} to="/Home"> Create Account</button>
-                            <Link  to="/login" >Already Have an Account?</Link>
-                        </div>
+
 
 
                             <div className="createAccount">
                                 <button type="submit"> Create Account</button>
                                 <Link to="/login">Already Have an Account?</Link>
                             </div>
+
 
 
                     </form>

@@ -9,14 +9,17 @@ import { isLoggedIn, getToken } from './AuthHelper';
 import { Dashboard } from './Main/Dashboard'
 import Store from './Main/Store'
 
+
+
 class App extends React.Component {
     state = {
         categorySelected : 0,
-        selectedBeerName : '',
-        searchTerm: ''
+        checkLogout: false
     }
 
     componentDidMount() {
+        const { myKey } = this.props.match.params
+        console.log(myKey)
         if (!isLoggedIn()) {
             this.props.history.replace('/Login')} else {
             axios({
@@ -32,6 +35,7 @@ class App extends React.Component {
         }
     }
 
+
     
     onCategoryChange = selectedCat => {
         console.log("selected category: " + selectedCat)
@@ -40,9 +44,7 @@ class App extends React.Component {
         })
     }
 
-    updateSearchTerm = queryString => {
-        this.setState({searchTerm: queryString})
-    }
+
 
     render() {
         return (
@@ -51,6 +53,12 @@ class App extends React.Component {
                     <div>
                         <Nav selectedCat={this.state.categorySelected} onSelect={this.onCategoryChange}/>
                         <Route exact path="/" component={Home}/>
+
+                        <Router>
+
+                        </Router>
+
+
 
 
 
