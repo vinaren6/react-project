@@ -1,5 +1,9 @@
 import React from 'react'
 import io from 'socket.io-client'
+import axios from 'axios'
+
+
+
 
 export const CTX = React.createContext();
 
@@ -10,6 +14,22 @@ const initState = {
     topic2: [
         {from: 'Stefan', msg: 'Hej!!'},
     ]
+}
+const getUserName = () =>
+{
+    axios.get('http://localhost:3010/getname')
+        .then(function (response) {
+            // handle success
+           const testing = response.data
+            return "hello"
+
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+
+
 }
 
 
@@ -43,8 +63,9 @@ export default function Store(props) {
             dispatch({type:'RECIEVE_MESSAGE', payload: msg});
         });
     }
+    ;
+    const user =  getUserName(1);
 
-    const user = 'Kalle' + Math.random(100).toFixed(2)
 
     const [allChats, dispatch] = React.useReducer(reducer, initState)
 

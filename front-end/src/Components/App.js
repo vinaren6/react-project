@@ -1,13 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import axios from 'axios';
-import Signup from './Main/Signup'
 import { Nav } from './Header/Nav'
 import { Home } from './Main/Home'
-import Login from './Main/Login'
 import { isLoggedIn, getToken } from './AuthHelper';
-import { Dashboard } from './Main/Dashboard'
-import Store from './Main/Store'
+
 
 
 

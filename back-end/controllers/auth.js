@@ -55,6 +55,14 @@ const login = async (req, res) => {
     return res.status(201).send({ signedJWT })
 }
 
+const getUserName = (req, res) =>{
+    console.log("testing")
+
+    res.send('helloing');
+
+
+}
+
 const isAuthorized = async (req, res, next) => {
 
     const bearer = req.headers.authorization
@@ -69,7 +77,7 @@ const isAuthorized = async (req, res, next) => {
     }
 
     const user = await User.findById(payload.id).exec()
-
+    console.log(user);
     if (!user) {
         return res.status(500).end()
     }
@@ -81,5 +89,6 @@ const isAuthorized = async (req, res, next) => {
 module.exports = {
     signup: signup,
     login: login,
-    isAuthorized: isAuthorized
+    isAuthorized: isAuthorized,
+    getUserName: getUserName
 }
