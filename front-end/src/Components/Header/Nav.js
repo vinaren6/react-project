@@ -31,7 +31,7 @@ const logoutbtn = () =>{
             centered
         >
             <Tab label="Home" component={Link} to="/"/>
-             <Tab label="log out" onClick={() => logoutbtn()} component={Link} to={'/login'} refresh="true" />
+             <Tab backgroundcolor="blue" label="log out" onClick={() => logoutbtn()} component={Link} to={'/login'} refresh="true" />
         </Tabs>
         </Paper>
     )

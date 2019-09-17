@@ -27,13 +27,6 @@ mongoose.connect('mongodb://localhost/testbase9', {useNewUrlParser: true, useCre
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 
-
-
-app.get('/', function(req, res){
-    res.json({someProperty : "Some value"})
-})
-
-
 app.post('/signup', [check('firstName').isLength({min:  3}), check('lastName').isLength({min:  3}), check('password').isLength({min:  6}), check('email').isEmail(),],(req, res, next) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
@@ -43,6 +36,7 @@ app.post('/signup', [check('firstName').isLength({min:  3}), check('lastName').i
         }
     }
     , signup)
+
 app.post('/login', [check('password').isLength({min:  6}), check('email').isEmail(),],(req, res, next) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -51,13 +45,10 @@ app.post('/login', [check('password').isLength({min:  6}), check('email').isEmai
         return next()
     }
 } ,login)
+
 app.use('/Redigera', isAuthorized)
 app.use('/api/books', bookRouter)
 app.use('/getname', getUserName)
-
-app.get('/', function(req, res){
-    res.send('<h1>Hello world</h1>');
-});
 
 io.on('connection', function(socket){
     console.log('user is connected')
@@ -67,9 +58,6 @@ io.on('connection', function(socket){
     });
 });
 
-
-http.listen(3001, function(){
-    console.log('listening on *:3001');
-});
+http.listen(3001, function(){console.log('listening on :3001');});
 
 app.listen(3010, function(){ console.log('Node server listening on port 3010');});

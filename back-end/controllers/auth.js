@@ -1,6 +1,5 @@
 const User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
-const { check, validationResult } = require('express-validator');
 
 function createJWT(user) {
     return jwt.sign({ id: user.id }, process.env.JWT_DEV_ENV_SECRET, {
@@ -55,11 +54,27 @@ const login = async (req, res) => {
     return res.status(201).send({ signedJWT })
 }
 
-const getUserName = (req, res) =>{
-    console.log("testing")
+const getUserName = async (req, res) =>{
+    const bearer = req.headers.authorization
 
-    res.send('helloing');
+    const token = bearer.split('Bearer ')[1].trim()
+    let payload
 
+    try {
+        payload = await verifyJWT(token)
+    } catch (e) {
+        return res.status(500).end()
+    }
+
+    const user = await User.findById(payload.id).exec()
+    console.log(user);
+    if (!user) {
+        return res.status(500)
+    }
+    console.log("authorized")
+    req.user = user
+
+    return res.status(200).send(user.firstName + ' ' + user.lastName)
 
 }
 
@@ -79,7 +94,7 @@ const isAuthorized = async (req, res, next) => {
     const user = await User.findById(payload.id).exec()
     console.log(user);
     if (!user) {
-        return res.status(500).end()
+        return res.status(500)
     }
      console.log("authorized")
     req.user = user

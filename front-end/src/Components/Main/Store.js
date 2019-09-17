@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { useState} from 'react'
 import io from 'socket.io-client'
 import axios from 'axios'
-
-
-
+import {getToken, isLoggedIn} from "../AuthHelper";
 
 export const CTX = React.createContext();
 
@@ -15,23 +13,6 @@ const initState = {
         {from: 'Stefan', msg: 'Hej!!'},
     ]
 }
-const getUserName = () =>
-{
-    axios.get('http://localhost:3010/getname')
-        .then(function (response) {
-            // handle success
-           const testing = response.data
-            return "hello"
-
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-
-
-}
-
 
 function reducer(state, action){
     const {from, msg, topic} = action.payload;
@@ -56,22 +37,49 @@ function sendChatAction(value){
 }
 
 export default function Store(props) {
+    const [count, setCount] = useState('');
 
-    if (!socket){
-        socket = io(':3001');
-        socket.on('chat message', function(msg){
-            dispatch({type:'RECIEVE_MESSAGE', payload: msg});
-        });
+    if (count === '' && isLoggedIn()) {
+        axios(
+        {
+            method: 'get',
+                url: 'http://localhost:3010/getname',
+            headers: {
+            authorization: 'Bearer ' + getToken()
+        }
+
+        })
+            .then(res => {
+
+                setCount(res.data)
+            })
+            .catch(function (error) {
+
+                console.log(error);
+            })
+
     }
-    ;
-    const user =  getUserName(1);
 
 
     const [allChats, dispatch] = React.useReducer(reducer, initState)
+    if (!socket) {
+        socket = io(':3001');
+        socket.on('chat message', function (msg) {
+            dispatch({type: 'RECIEVE_MESSAGE', payload: msg});
+        })};
 
-    return(
-        <CTX.Provider value={{allChats, sendChatAction, user}}>
-            {props.children}
-        </CTX.Provider>
-    )
+
+
+        const user = {count}.count
+
+         return (
+             <CTX.Provider value={{allChats, sendChatAction, user}}>
+                 {props.children}
+             </CTX.Provider>
+         )
+
+
+
+
+
 }

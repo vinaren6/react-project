@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import {getToken, isLoggedIn, setToken} from "../AuthHelper";
+import { setToken} from "../AuthHelper";
 import {Link} from "react-router-dom";
 
 class Login extends React.Component{

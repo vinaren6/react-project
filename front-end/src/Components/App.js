@@ -15,8 +15,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        const { myKey } = this.props.match.params
-        console.log(myKey)
         if (!isLoggedIn()) {
             this.props.history.replace('/Login')} else {
             axios({
@@ -25,9 +23,6 @@ class App extends React.Component {
                 headers: {
                     authorization: 'Bearer ' + getToken()
                 }
-            }).then((result) => {
-                console.log("app protected resource")
-                console.log(result)
             })
         }
     }
@@ -35,7 +30,6 @@ class App extends React.Component {
 
     
     onCategoryChange = selectedCat => {
-        console.log("selected category: " + selectedCat)
         this.setState({
             categorySelected : selectedCat
         })
